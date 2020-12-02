@@ -11,7 +11,7 @@ const suggest = async(req, res) => {
          _source: "suggest",
          suggest: {
            gotsuggest : {
-             text: 'Ty', 
+             text: text, 
              completion : {field : 'suggest'}
            }
          }

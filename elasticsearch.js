@@ -42,18 +42,6 @@ async function run () {
   })
 }
 
-const checkIndices = async () => {
-  client.indices.exists({index: 'game-of-thrones'})
-  .then(response => {
-    if(!response.body) {
-      client.indices.create( { index: 'game-of-thrones'})
-      console.log('Succcessfully created new index')
-    }
-    console.log('Index has already been created')
-  })
-  .catch(error => console.log('Error is', error))
-}
-
 const putMap = async () => {
 
   client.indices.putMapping({
@@ -78,23 +66,5 @@ const putMap = async () => {
  });
 }
 
-// const getSuggestions = async() => {
-//    client.search({
-//     index: 'game-of-thrones',
-//     body: {
-//           _source: "suggest",
-//           suggest: {
-//             gotsuggest : {
-//               text: 'Ty', 
-//               completion : {field : 'suggest'}
-//             }
-//           }
-//         }
-//   }).then(res => console.log('Response is', res))
-//   .catch(err => console.log('Error is', err))
-// }
-
 //run().catch(console.log)
-checkIndices()
 // putMap()
-// getSuggestions()
