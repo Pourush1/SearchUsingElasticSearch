@@ -16,7 +16,7 @@ const suggest = async(req, res) => {
            }
          }
        }
- }).then(res => console.log('Response is', res))
+ }).then(res => console.log('Response is', res.body.suggest.gotsuggest[0].options[0]._source.suggest))
  .catch(err => console.log('Error is', err))
 }
 

@@ -1,6 +1,7 @@
 const { Client } = require('@elastic/elasticsearch')
 
 const client = new Client({ node: 'http://localhost:9200' })
+const createMapping = require('../createMapping')
 
 const checkIndices = async (req, res) => {
   const {text} = req.params

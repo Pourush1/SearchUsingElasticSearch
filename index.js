@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const routes = require('./routes')
+const inputData = require('./inputDataToIndex')
 
 const app = express()
 
