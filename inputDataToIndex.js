@@ -1,25 +1,28 @@
 const { Client } = require('@elastic/elasticsearch')
-const client = new Client({node: 'http://localhost:9200'})
+const client = new Client({ node: 'http://localhost:9200' })
 
-const run =  async() => {
+const run = async () => {
   const dataSet = [
     {
       character: 'Pourush Shrestha',
       quote: 'A mind needs books like a sword needs a whetstone.',
       suggest: {
-          input: ['Pourush', 'Shrestha']
+        input: ['Pourush', 'Shrestha']
       }
     },
-    {  
+    {
       character: 'Ramesh Ghimire',
       quote: 'I am the blood of the dragon.',
       suggest: {
-          input: ['Ramesh', 'Ghimire' ]
+        input: ['Ramesh', 'Ghimire']
       }
     }
   ]
 
-  const body = dataSet.flatMap(doc => [{ index: { _index: 'game-of-thrones' } }, doc])
+  const body = dataSet.flatMap(doc => [
+    { index: { _index: 'game-of-thrones' } },
+    doc
+  ])
 
   const { body: bulkResponse } = await client.bulk({ refresh: true, body })
 
@@ -48,4 +51,4 @@ const run =  async() => {
 
 // run().catch(console.log)
 
-module.exports = {run}
+module.exports = { run }
